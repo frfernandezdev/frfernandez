@@ -1,0 +1,44 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	font-family: "Poppins", Helvetica, sans-serif;
+	font-size: 12px;
+	letter-spacing: 5px;
+	overflow: hidden;
+}
+
+#___gatsby,
+#gatsby-focus-wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+main {
+	display: block;
+}
+
+h1 {}
+
+hr {
+	box-sizing: content-box;
+	height: 0;
+	overflow: visible;
+}
+
+a {
+	background-color: transparent;
+}

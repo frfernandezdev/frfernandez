@@ -1,0 +1,82 @@
+nav {
+	position: fixed;
+	top: 50%;
+	left: 85px;
+	transform: translateY(-50%);
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+li {
+	position: relative;
+	width: 18px;
+	height: 18px;
+	margin: 26px;
+}
+
+li > button {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #000;
+	outline: none;
+	cursor: pointer;
+	border: none;
+}
+
+li.active > button {
+	width: 0;
+	height: 0;
+}
+
+.pacman {
+	position: absolute;
+	top: 0;
+	left: -1px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	margin: 26px;
+	background-color: #000;
+}
+
+.pacman::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 20px;
+	height: 22px;
+	background-color: #fff;
+	clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+}
+
+.pacman__eat::after {
+	animation-name: eat;
+	animation-duration: .7s;
+	animation-iteration-count: infinite;
+}
+
+
+@keyframes eat {
+	0% {
+		clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+	}
+	25% {
+		clip-path: polygon(50% 50%, 25% 100%, 75% 100%);
+	}
+	50% {
+		clip-path: polygon(50% 50%, 50% 100%, 50% 100%);
+	}
+	75% {
+		clip-path: polygon(50% 50%, 25% 100%, 75% 100%);
+	}
+	100% {
+		clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+	}
+}
