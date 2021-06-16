@@ -4,8 +4,14 @@ import React, {
 	createRef, 
 	useRef 
 } from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 import { useOnceCall } from 'src/hooks';
+
+
+
+const EAT = 'pacman__eat';
+const TURN = 'pacman__turn';
 
 function makeArr(i) {
 	return Array(i)
@@ -13,28 +19,83 @@ function makeArr(i) {
 		.map(() => ({state: false, ref: createRef(null)}));
 }
 
-export default function PacNav() {
-	const pacman = useRef(null);
+function getBoundingClientRect(el, dir) {
+	return el.current.getBoundingClientRect()[dir];
+}
+
+export default function PacNav({ value, steps, onChange }) {
 	const box = useRef(null);
-	const [ eat, setEat ] = useState(false);
-	const [ dots, setDots ] = useState(makeArr(3));
+	const dir = useRef(0);
+	const last = useRef(0);
+	const pacman = useRef(null);
+	const [ dots, setDots ] = useState(makeArr(steps));
 
 	useOnceCall(() => {
-		const upDots = [...dots];
-		upDots[0] = { ...upDots[0], state: true };
-		setDots(upDots);
+		if (value > 0 && value < dots.length) {
+			handleDots(value);
+			move(value);
+			return 0;
+		}
+		handleDots(0);
+		move(0);
 	});
+	
+	function handleDots(i) {
+		const stateDots = [...dots];
+
+		stateDots[last.current].state = !(last.current !== i);
+		stateDots[i].state = true;
+		setDots(stateDots);
+	}
+
+	function eatOn() {
+		const { current } = pacman;
+
+		current.classList.toggle(EAT);
+	}
 
 	function move(i) {
+		const { current } = pacman;
 		const { ref } = dots[i];
-		const btop = box.current.getBoundingClientRect().top;
-		const top = ref.current.getBoundingClientRect().top;
-	
-		pacman.current.style.top = `${top - btop}px`;
+		const boxTop = getBoundingClientRect(box, 'top');
+		const refTop = getBoundingClientRect(ref, 'top');
+		
+		current.style.top = `${refTop - boxTop}px`;
+	}
+
+	function turnOn() {
+		if (dir.current) {
+			pacman.current.classList.add('pacman__turn');
+		}
+		else {
+			pacman.current.classList.remove('pacman__turn');
+		}
+	}
+
+	function handlePacman(i) {
+		move(i);
+		eatOn();
+		
+		turnOn();
+		setTimeout(() => {
+			eatOn();
+			
+			if (i === 0) dir.current = 0;
+			if (i === (dots.length -1)) dir.current = 1;
+			
+			turnOn();
+		}, 500);
 	}
 
 	function handleClick(i) {
-		return () => move(i);
+		return () => {
+			if (i > last.current) dir.current = 0;
+			if (i < last.current) dir.current = 1;
+
+			handleDots(i);
+			handlePacman(i);
+			last.current = i;
+		};
 	}
 
 	function renderDot({ state, ref }, i) {
@@ -51,11 +112,44 @@ export default function PacNav() {
 
 	return (
 		<nav>
-			<div
-				ref={pacman}
-				className={`pacman ${eat ? 'eat' : ''}`}
-			></div>
+			<div ref={pacman} className="pacman"></div>
 			<ul ref={box}>{dots.map(renderDot)}</ul>
 		</nav>
 	);
 }
+
+PacNav.propTypes = {
+	value: PropTypes.number.isRequired,
+	steps: PropTypes.number.isRequired,
+	onChange: PropTypes.func
+};
+
+//function turnOn(i) {
+//	const state = {...pacman};
+//
+//	state.eat = false;
+//	if (i === (dots.length -1)) state.turn = true;
+//	else state.turn = false;
+//
+//	setPacman(state);
+//	last.current = i;
+//}
+//
+//function move(i) {
+//	const upDots = [...dots];
+//	const { ref } = dots[i];
+//	const btop = box.current.getBoundingClientRect().top;
+//	const top = ref.current.getBoundingClientRect().top;
+//
+//	if (last.current !== i) {
+//		upDots[last.current].state = false;
+//	}
+//	setTimeout(() => turnOn(i), 500);
+//
+//	pacman.ref.current.style.top = `${top - btop}px`;
+//
+//	setPacman(prev => ({...prev, eat: true}));
+//
+//	upDots[i].state = true;
+//	setDots(upDots);
+//}

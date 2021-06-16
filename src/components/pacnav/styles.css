@@ -20,6 +20,8 @@ li {
 
 li > button {
 	position: absolute;
+	top: 50%;
+	left: 50%;
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
@@ -27,6 +29,8 @@ li > button {
 	outline: none;
 	cursor: pointer;
 	border: none;
+	transition: all .3s ease-in-out;
+	transform: translate(-50%, -50%);
 }
 
 li.active > button {
@@ -43,6 +47,7 @@ li.active > button {
 	border-radius: 50%;
 	margin: 26px;
 	background-color: #000;
+	transition: top .5s ease;
 }
 
 .pacman::after {
@@ -53,30 +58,20 @@ li.active > button {
 	width: 20px;
 	height: 22px;
 	background-color: #fff;
-	clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+	clip-path: polygon(50% 50%, 
+										 0% 100%, 
+										 100% 100%);
+	transition: transform .7s, clip-path .7s;
 }
 
 .pacman__eat::after {
-	animation-name: eat;
-	animation-duration: .7s;
-	animation-iteration-count: infinite;
+	clip-path: polygon(50% 50%, 
+										 50% 100%, 
+										 50% 100%);
+}
+
+.pacman__turn::after {
+	transform: rotate(180deg);
 }
 
 
-@keyframes eat {
-	0% {
-		clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
-	}
-	25% {
-		clip-path: polygon(50% 50%, 25% 100%, 75% 100%);
-	}
-	50% {
-		clip-path: polygon(50% 50%, 50% 100%, 50% 100%);
-	}
-	75% {
-		clip-path: polygon(50% 50%, 25% 100%, 75% 100%);
-	}
-	100% {
-		clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
-	}
-}
