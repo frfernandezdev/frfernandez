@@ -1,6 +1,5 @@
 import React, { 
 	useState, 
-	useEffect, 
 	createRef, 
 	useRef 
 } from 'react';
@@ -123,33 +122,3 @@ PacNav.propTypes = {
 	steps: PropTypes.number.isRequired,
 	onChange: PropTypes.func
 };
-
-//function turnOn(i) {
-//	const state = {...pacman};
-//
-//	state.eat = false;
-//	if (i === (dots.length -1)) state.turn = true;
-//	else state.turn = false;
-//
-//	setPacman(state);
-//	last.current = i;
-//}
-//
-//function move(i) {
-//	const upDots = [...dots];
-//	const { ref } = dots[i];
-//	const btop = box.current.getBoundingClientRect().top;
-//	const top = ref.current.getBoundingClientRect().top;
-//
-//	if (last.current !== i) {
-//		upDots[last.current].state = false;
-//	}
-//	setTimeout(() => turnOn(i), 500);
-//
-//	pacman.ref.current.style.top = `${top - btop}px`;
-//
-//	setPacman(prev => ({...prev, eat: true}));
-//
-//	upDots[i].state = true;
-//	setDots(upDots);
-//}
