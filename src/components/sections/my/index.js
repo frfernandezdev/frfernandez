@@ -4,7 +4,7 @@ import './index.module.css';
 
 export default function My() {
 	return (
-		<section></section>
+		<section>My</section>
 	);
 }
 
