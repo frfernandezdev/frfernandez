@@ -3,6 +3,7 @@ import React from 'react';
 import Header from 'components/header';
 import Footer from 'components/footer';
 import PacNav from 'components/pacnav';
+import ScrollMain from 'components/scrollmain';
 
 import My from 'sections/my';
 import About from 'sections/about';
@@ -15,12 +16,12 @@ const Landing = () => {
   return (
 		<div className={styles.wrapper}>
 			<Header/>
-			<PacNav/>
-			<main>
+			<PacNav value={0} steps={4}/>
+			<ScrollMain>
 				<My/>
 				<About/>
 				<Work/>
-			</main>
+			</ScrollMain>
 			<Footer/>
 		</div>
  	);
