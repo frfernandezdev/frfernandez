@@ -14,7 +14,8 @@ module.exports = {
         src: path.join(__dirname, 'src'),
         pages: path.join(__dirname, 'src/pages'),
 				components: path.join(__dirname, 'src/components'),
-				sections: path.join(__dirname, 'src/components/sections')
+				sections: path.join(__dirname, 'src/sections'),
+				icons: path.join(__dirname, 'src/icons')
 			}
 		},
 		{
@@ -30,6 +31,14 @@ module.exports = {
 				display: `standalone`,
 				icon: `src/images/icon.png`
 			},
+		},
+		{
+			resolve: 'gatsby-plugin-react-svg',
+			options: {
+				rule: {
+					include: /icons/
+				}
+			}
 		},
 		`gatsby-plugin-image`,
 		{
