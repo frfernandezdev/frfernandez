@@ -1,11 +1,11 @@
 import { useRef, useEffect } from 'react'; 
 
 export function useOnceCall(cb) {
-	const isCallRef = useRef(false);
+	const isCallRef = useRef(0);
 
 	useEffect(() => {
 		if (isCallRef.current) return;
-		isCallRef.current = true;
+		isCallRef.current = 1;
 		return cb();
 	}, [ cb ]);
 };
@@ -23,7 +23,7 @@ export function useScrollTrigger(cb, delay=null) {
 			dir.current = __dir;
 			return () => {
 				rId.current = null;
-				cb(dir.current);
+				return cb(dir.current);
 			}
 		}
 
@@ -33,11 +33,10 @@ export function useScrollTrigger(cb, delay=null) {
 									delta >= scrollSensitivitySettings ? 1 : 0;
 
 			if (!delay) {
-				if (dir.current === __dir) return;
+				if (dir.current === __dir) return 0;
 
 				dir.current = __dir;
-				cb(dir.current);
-				return;
+				return cb(dir.current);
 			};
 
 			if (rId.current) return;
@@ -46,8 +45,9 @@ export function useScrollTrigger(cb, delay=null) {
 
 		window.addEventListener(mousewheelEvent, listener)	
 		return () => {
-			window.removeEventListener(mousewheelEvent, listener)
-		};
+			clearTimeout(rId.current);
+			window.removeEventListener(mousewheelEvent, listener);
+		}
 	}, [ cb, delay ]);
 
 };
