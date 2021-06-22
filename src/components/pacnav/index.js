@@ -1,44 +1,34 @@
 import React, { 
 	useState, 
-	createRef, 
-	useRef 
+	useRef,
+	useEffect,
+	memo,
+	createRef
 } from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
+import * as styles from './index.module.css';
+import Tooltip from '../tooltip';
+import { getBoundingClientRect } from 'src/utils';
 import { useOnceCall } from 'src/hooks';
 
 
-
-const EAT = 'pacman__eat';
-const TURN = 'pacman__turn';
-
-function makeArr(i) {
-	return Array(i)
-		.fill()
-		.map(() => ({state: false, ref: createRef(null)}));
+function makeDots(arr) {
+	return Array.from(arr)
+		.map(e => ({
+			state: false,
+			ref: createRef(null),
+			tooltip: e
+		}));
 }
 
-function getBoundingClientRect(el, dir) {
-	return el.current.getBoundingClientRect()[dir];
-}
-
-export default function PacNav({ value, steps, onChange }) {
+const PacNav = memo(function({ value, steps, onChange }) {
+	const [ dots, setDots ] = useState(makeDots(steps));
+	const pacman = useRef(null);
+	const rId = useRef(null);
 	const box = useRef(null);
 	const dir = useRef(0);
 	const last = useRef(0);
-	const pacman = useRef(null);
-	const [ dots, setDots ] = useState(makeArr(steps));
 
-	useOnceCall(() => {
-		if (value > 0 && value < dots.length) {
-			handleDots(value);
-			move(value);
-			return 0;
-		}
-		handleDots(0);
-		move(0);
-	});
-	
 	function handleDots(i) {
 		const stateDots = [...dots];
 
@@ -50,7 +40,16 @@ export default function PacNav({ value, steps, onChange }) {
 	function eatOn() {
 		const { current } = pacman;
 
-		current.classList.toggle(EAT);
+		current.classList.toggle(styles.pacman__eat);
+	}
+
+	function turnOn() {
+		if (dir.current) {
+			pacman.current.classList.add(styles.pacman__turn);
+		}
+		else {
+			pacman.current.classList.remove(styles.pacman__turn);
+		}
 	}
 
 	function move(i) {
@@ -60,15 +59,6 @@ export default function PacNav({ value, steps, onChange }) {
 		const refTop = getBoundingClientRect(ref, 'top');
 		
 		current.style.top = `${refTop - boxTop}px`;
-	}
-
-	function turnOn() {
-		if (dir.current) {
-			pacman.current.classList.add('pacman__turn');
-		}
-		else {
-			pacman.current.classList.remove('pacman__turn');
-		}
 	}
 
 	function handlePacman(i) {
@@ -94,31 +84,59 @@ export default function PacNav({ value, steps, onChange }) {
 			handleDots(i);
 			handlePacman(i);
 			last.current = i;
+			onChange(i);
 		};
 	}
 
-	function renderDot({ state, ref }, i) {
+	function renderDot({ tooltip, state, ref }, i) {
 		return (
 			<li
 				key={i}
 				ref={ref}
-				className={state ? 'active' : null}
+				className={state ? styles.active : null}
 			>
-				<button onClick={handleClick(i)}></button>
+				<Tooltip title={tooltip} placement="right">
+					<button onClick={handleClick(i)} aria-label={`Navigate ${tooltip}`}></button>
+				</Tooltip>
 			</li>
 		);
 	}
 
+	useOnceCall(() => {
+		if (value > 0 && value < dots.length) {
+			handleDots(value);
+			move(value);
+			return 0;
+		}
+		handleDots(0);
+		move(0);
+	});
+
+
+	useEffect(() => {
+		if (value === last.current) return 0;
+		if (value >= 0 && value < dots.length) {
+			handleClick(value)();
+		}
+	}, [ value ]);
+
 	return (
-		<nav>
-			<div ref={pacman} className="pacman"></div>
+		<nav id={styles.pacnav}>
+			<div ref={pacman} className={styles.pacman}></div>
 			<ul ref={box}>{dots.map(renderDot)}</ul>
 		</nav>
 	);
-}
+}, (prev, next) => {
+	if (prev.value === next.value 
+				&& prev.steps === next.steps
+				&& prev.onChange === next.onChange) return true;
+	return false;
+});
 
 PacNav.propTypes = {
 	value: PropTypes.number.isRequired,
-	steps: PropTypes.number.isRequired,
+	steps: PropTypes.arrayOf(PropTypes.string),
 	onChange: PropTypes.func
 };
+
+export default PacNav; 
