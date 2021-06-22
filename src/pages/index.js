@@ -1,7 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
 
-import Header from 'components/header';
-import Footer from 'components/footer';
 import PacNav from 'components/pacnav';
 import ScrollMain from 'components/scrollmain';
 
@@ -10,19 +9,31 @@ import About from 'sections/about';
 import Work from 'sections/work';
 
 import * as styles from './index.module.css'; 
+import { useScrollTrigger } from 'src/hooks';
 
+
+
+const sections = ['My', 'About', 'Work']; 
 
 const Landing = () => {
+	const [layer, setLayer] = useState(0);
+
+	useScrollTrigger((dir) => {
+		const next = dir ? layer -1: layer +1;
+
+		if (next < 0 || next >= sections.length) return 0;
+
+		setLayer(next);
+	}, 500);
+
   return (
 		<div className={styles.wrapper}>
-			<Header/>
-			<PacNav value={0} steps={4}/>
-			<ScrollMain>
+			<PacNav value={layer} steps={sections} onChange={setLayer}/>
+			<ScrollMain value={layer}>
 				<My/>
 				<About/>
 				<Work/>
 			</ScrollMain>
-			<Footer/>
 		</div>
  	);
 }
