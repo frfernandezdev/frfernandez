@@ -1,0 +1,75 @@
+.github-corner {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 100px;
+	z-index: 99999;
+}
+
+#my {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.avatar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 296px;
+	height: 296px;
+}
+
+.avatar::before {
+	content: '';
+	position: absolute;
+	width: 296px;
+	height: 296px;
+	border-radius: 100%;
+	overflow: hidden;
+	box-shadow: 0 0 20px 5px rgba(105, 130, 149, 8%);
+}
+
+.avatar-img {
+	width: 266px;
+	height: 266px;
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+.avatar-flag {
+	position: absolute;
+	bottom: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.my-name {
+	font-weight: bolder;
+	letter-spacing: 2px;
+	margin: 30px 0 15px 0;
+}
+
+.occupation {
+	color: #444444;
+	margin-bottom: 38px;
+}
+
+.call-to-action {
+	display: flex;
+}
+
+.whitespace {
+	flex: 1;
+	width: 28px;
+}
