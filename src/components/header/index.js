@@ -3,11 +3,11 @@ import React from 'react';
 import Tooltip from '../tooltip';
 import * as styles from './index.module.css';
 
-import Twitter from 'icons/twitter.svg';
-import Instagram from 'icons/instagram.svg';
-import Linkedin from 'icons/linkedin.svg';
-import Codepen from 'icons/codepen.svg';
-import Dribbble from 'icons/dribbble.svg';
+import Twitter from 'icons/twitter.inline.svg';
+import Instagram from 'icons/instagram.inline.svg';
+import Linkedin from 'icons/linkedin.inline.svg';
+import Codepen from 'icons/codepen.inline.svg';
+import Dribbble from 'icons/dribbble.inline.svg';
 
 
 export default function Header() {
