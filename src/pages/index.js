@@ -30,9 +30,9 @@ const Landing = () => {
 		<div className={styles.wrapper}>
 			<PacNav value={layer} steps={sections} onChange={setLayer}/>
 			<ScrollMain value={layer}>
-				<My/>
-				<About/>
-				<Work/>
+				<My setLayer={setLayer}/>
+				<About setLayer={setLayer}/>
+				<Work setLayer={setLayer}/>
 			</ScrollMain>
 		</div>
  	);
