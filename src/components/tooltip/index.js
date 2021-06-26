@@ -20,7 +20,7 @@ const Portal = ({children}) => createPortal(
 
 // Calc center box
 const calc = (ar1, ar2, ar3) => (ar1 + (ar2 /2)) - (ar3 /2); 
-console.log(styles)
+
 const Tooltip = memo(function({ children, title, placement='bottom' }) {
 	const [state, setState] = useState(false);
 	const tooltipRef = useRef(null);
@@ -48,18 +48,22 @@ const Tooltip = memo(function({ children, title, placement='bottom' }) {
 			if (placement === 'bottom') {
 				tooltipRef.current.style.left   = calc(pos.current.left, pos.current.width, width) + 'px';
 				tooltipRef.current.style.top    = (pos.current.bottom +6) + 'px';
+				tooltipRef.current.classList.add(styles.tooltip_arrow_top);
 			}
 			if (placement === 'top') {
 				tooltipRef.current.style.left   = calc(pos.current.left, pos.current.width, width) + 'px';
 				tooltipRef.current.style.top 		= (pos.current.top - height -6) + 'px';
+				tooltipRef.current.classList.add(styles.tooltip_arrow_bottom);
 			}
 			if (placement === 'left') {
 				tooltipRef.current.style.left 	= (pos.current.left - width -6) + 'px';
 				tooltipRef.current.style.top    = calc(pos.current.top, pos.current.height, height) + 'px';
+				tooltipRef.current.classList.add(styles.tooltip_arrow_right);
 			}
 			if (placement === 'right') {
 				tooltipRef.current.style.left 	= (pos.current.right +6) + 'px';
 				tooltipRef.current.style.top    = calc(pos.current.top, pos.current.height, height) + 'px';
+				tooltipRef.current.classList.add(styles.tooltip_arrow_left);
 			}
 			tooltipRef.current.classList.add(styles.tooltip__show)
 		});
