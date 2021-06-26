@@ -43,41 +43,68 @@ a {
 }
 
 h1 {
-	font-size: 36px;
+	font-size: 32px;
 }
 
 h2 {
-	font-size: 30px
+	font-size: 26px
 }
 
 h3 {
-	font-size: 24px;
+	font-size: 20px;
+}
+
+h4 {
+	font-size: 18px;
+}
+
+h5 {
+	font-size: 16px;
+}
+
+p {
+	color: #444444;
+	line-height: 1.5;
+	letter-spacing: 0;
 }
 
 button.my-btn {
-	cursor: pointer;
 	padding: 18px 35px;
 	border-radius: 15px;
 	background-color: white;
 	border: 1px solid #EEEEEE;
 	box-shadow: 0 2px 4px 0 rgba(105, 130, 149, 25);
 	transition: box-shadow .5s ease;
+	}
+
+button.icon-btn {
+	width: 40px;
+	height: 40px;
+	padding: 15px;
+	border-radius: 100%;
+	box-sizing: content-box;
 }
 
-button.my-btn,
-button.my-btn:hover,
-button.my-btn:focus,
-button.my-btn:active {
+button,
+button:hover,
+button:focus,
+button:active {
 	outline: none;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
 }
 
-button.my-btn:hover {
+button.my-btn:hover, 
+button.icon-btn:hover {
 	background-color: #f6f6f6;
 }
-button.my-btn:active {
+button.my-btn:active,
+button.icon-btn:active {
 	box-shadow: 0 0px 2px 0 rgba(105, 130, 149, 25);
 }
 
 button.my-btn.light {
 	border: 1px solid #67DEE5;
 }
+
