@@ -24,7 +24,6 @@ function makeDots(arr) {
 const PacNav = memo(function({ value, steps, onChange }) {
 	const [ dots, setDots ] = useState(makeDots(steps));
 	const pacman = useRef(null);
-	const rId = useRef(null);
 	const box = useRef(null);
 	const dir = useRef(0);
 	const last = useRef(0);
@@ -118,7 +117,7 @@ const PacNav = memo(function({ value, steps, onChange }) {
 		if (value >= 0 && value < dots.length) {
 			handleClick(value)();
 		}
-	}, [ value ]);
+	}, [ value, handleClick ]);
 
 	return (
 		<nav id={styles.pacnav}>
