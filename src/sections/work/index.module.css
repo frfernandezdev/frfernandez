@@ -1,0 +1,135 @@
+#work {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#work .nav-title {
+	display: grid;
+	grid-template-columns: 1fr 1320px 1fr;
+	position: absolute;
+	top: var(--title-section-about, 0);
+	left: 0;
+	width: 100%;
+	height: 64px;
+}
+
+#work .nav-title .title {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#work .nav-title .container {
+	padding: 0;
+	margin: 0;
+}
+
+#work > .container {
+	width: 100%;
+	height: 100%;
+	padding-top: 64px;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media only screen and (min-width: 576px) {
+	#work .container {
+		width: 540px;
+	}
+}
+@media only screen and (min-width: 768px) {
+	#work .container {
+		width: 720px;
+	}
+}
+@media only screen and (min-width: 992px) {
+	#work .container {
+		width: 920px;
+	}
+}
+@media only screen and (min-width: 1200px) {
+	#work .container {
+		width: 1140px;
+	}
+}
+@media only screen and (min-width: 1400px) {
+	#work .container {
+		width: 1320px;
+	}
+}
+
+#work .projects {
+	display: grid;
+	grid-template-columns: repeat(3, 316px);
+	grid-template-rows: repeat(3, 190px);
+	grid-gap: 100px 80px;
+	width: 100%;
+	height: 100%;
+	align-content: center;
+	justify-content: center;
+}
+
+#work .projects .project {
+	position: relative;
+}
+
+#work .projects .project .browser {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;	
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	background-color: white;
+}
+
+#work .projects .project .browser::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(icons/frame-browser.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#work .projects .project .project-img {
+	width: 50%;
+	height: 50%;
+}
+
+#work .projects .project .mobile {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 90px;
+	height: 172px;
+	background-color: white;
+	border-radius: 15px;
+}
+
+#work .projects .project .mobile::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(icons/frame-mobile.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#work .projects .project .over {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
