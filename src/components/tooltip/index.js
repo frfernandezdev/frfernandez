@@ -7,27 +7,28 @@ import React, {
 	cloneElement,
 	memo
 } from 'react';
+import PropTypes from 'prop-types';
 import {createPortal} from 'react-dom';
 import { getBoundingClientRect } from 'src/utils';
 import * as styles from './index.module.css';
 
 
 
-const Portal = ({children}) => createPortal(
+const Portal = ({children, rootElement}) => createPortal(
 	children,
-	document.body
+	(rootElement || document.body)
 );
 
 // Calc center box
 const calc = (ar1, ar2, ar3) => (ar1 + (ar2 /2)) - (ar3 /2); 
 
-const Tooltip = memo(function({ children, title, placement='bottom' }) {
+const Tooltip = memo(function({ children, title, placement='bottom', rootElement=null }) {
 	const [state, setState] = useState(false);
 	const tooltipRef = useRef(null);
 	const childRef = useRef(null);
 	const pos = useRef({});
 	const rId = useRef(null);
-
+	
 	const PortalChild = createElement(
 		'div',
 		{
@@ -74,7 +75,7 @@ const Tooltip = memo(function({ children, title, placement='bottom' }) {
 		setState(false); 
 	}, [ setState ]);
 
-	useEffect(() => {
+	const calcPosition = useCallback(function() {
 		let current = childRef.current;
 		if (!current) return 0;
 		const {
@@ -92,6 +93,13 @@ const Tooltip = memo(function({ children, title, placement='bottom' }) {
 		pos.current.right = right;
 		pos.current.width = width;
 		pos.current.height = height;
+	}, []);
+
+	useEffect(() => {
+		calcPosition();
+		
+		let current = childRef.current;
+		if (!current) return 0;
 
 		current.addEventListener('mouseover', show);
 		current.addEventListener('mouseleave', hidden);
@@ -101,19 +109,26 @@ const Tooltip = memo(function({ children, title, placement='bottom' }) {
 			current = null;
 			clearTimeout(rId.current);
 		}
-	}, [ show, hidden ]);
+	}, [ show, hidden, calcPosition ]);
 
 	return (
 		<>
 			{ cloneElement(children, { ref: childRef }) }
-			{ state ? <Portal children={PortalChild} /> : null }
+			{ state ? <Portal children={PortalChild} rootElement={rootElement}/> : null }
 		</>
 	);
 }, (prev, next) => {
 	if (prev.children === next.children 
 				&& prev.title === next.title
-				&& prev.placement === next.placement) return true;
+				&& prev.placement === next.placement
+				&& prev.rootElement === next.rootElement) return true;
 	return false;
 });
+
+Tooltip.propTypes = {
+	title: PropTypes.string.isRequired, 
+	placement: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+	rootElement: PropTypes.any
+}
 
 export default Tooltip;
