@@ -111,7 +111,6 @@ const PacNav = memo(function({ value, steps, onChange }) {
 		move(0);
 	});
 
-
 	useEffect(() => {
 		if (value === last.current) return 0;
 		if (value >= 0 && value < dots.length) {

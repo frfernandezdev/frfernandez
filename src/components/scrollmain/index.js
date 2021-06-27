@@ -1,12 +1,14 @@
 import React, {
 	useEffect,
 	memo,
-	useRef
+	useRef,
+	createContext
 } from 'react';
 
 import * as styles from './index.module.css'; 
 
 
+const ScrollMainContext = createContext({});
 
 const ScrollMain = memo(({children, value}) => {
 	const wrapperRef = useRef(null);
@@ -41,11 +43,13 @@ const ScrollMain = memo(({children, value}) => {
 			ref = null;
 		}
 	}, [ value, wrapperRef ]);
-
+	
 	return (
 		<main id={styles.main}>
 			<div ref={wrapperRef} className={styles.wrapper}>
-				{children.map(layer)}
+				<ScrollMainContext.Provider value={{ ref: wrapperRef }}>
+					{children.map(layer)}
+				</ScrollMainContext.Provider>
 			</div>
 		</main>
 	);
@@ -55,4 +59,4 @@ const ScrollMain = memo(({children, value}) => {
 	return false
 });
 
-export default ScrollMain;
+export { ScrollMain, ScrollMainContext };
