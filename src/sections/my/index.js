@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { memo, useContext } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 
 import Header from 'components/header';
 import Tooltip from 'components/tooltip';
+import { ScrollMainContext } from 'components/scrollmain';
 
-import GitHub from 'icons/github-clip.svg';
-
-import Ven from 'icons/venezuela.svg';
+import GitHub from 'icons/github-clip.inline.svg';
+import Ven from 'icons/venezuela.inline.svg';
+import ArrowBottom from 'icons/arrow-bottom.inline.svg';
 import * as styles from './index.module.css';
 
 
@@ -20,7 +21,10 @@ const GitHubCorner = () => (
 	</a>
 );
 
-export default function My() {
+
+
+const My = memo(function({ setLayer }) {
+	const { ref } = useContext(ScrollMainContext);
 	return (
 		<section id={styles.my}>
 			<GitHubCorner />
@@ -34,7 +38,11 @@ export default function My() {
 						objectPosition="25% 50%"
 						className={styles.avatarImg}
 					/>
-					<Tooltip title="Venezuela, Tachira, Michelena" placement="right">
+					<Tooltip 
+						title="Venezuela, Tachira, Michelena" 
+						placement="right"
+						rootElement={ref.current}
+					>
 						<div className={styles.avatarFlag}>
 							<Ven />
 						</div>
@@ -55,8 +63,22 @@ export default function My() {
 						aria-label="Contact"
 					>Contact</button>
 				</div>
+				<div className={styles.arrowBottom}>
+					<button 
+						type="button" 
+						className="icon-btn"
+						onClick={() => setLayer(1)}
+					>
+						<ArrowBottom />
+					</button>
+				</div>
 			</div>
 		</section>
 	);
-}
+}, (prev, next) => {
+	if (prev.setLayer === next.setLayer) return true;
+	return false;
+});
+
+export default My;
 

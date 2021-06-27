@@ -36,6 +36,7 @@
 	width: 296px;
 	height: 296px;
 	border-radius: 100%;
+	border: 1px solid rgba(0,0,0,0.1);
 	overflow: hidden;
 	box-shadow: 0 0 20px 5px rgba(105, 130, 149, 8%);
 }
@@ -72,4 +73,11 @@
 .whitespace {
 	flex: 1;
 	width: 28px;
+}
+
+.arrow-bottom {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
 }
