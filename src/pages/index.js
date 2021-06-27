@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 import PacNav from 'components/pacnav';
-import ScrollMain from 'components/scrollmain';
+import { ScrollMain } from 'components/scrollmain';
 
 import My from 'sections/my';
 import About from 'sections/about';
@@ -19,12 +19,12 @@ const Landing = () => {
 	const [layer, setLayer] = useState(0);
 
 	useScrollTrigger((dir) => {
-		const next = dir ? layer -1: layer +1;
+		const next = dir ? layer -1 : layer +1;
 
 		if (next < 0 || next >= sections.length) return 0;
-
+		
 		setLayer(next);
-	}, 500);
+	}, 200);
 
   return (
 		<div className={styles.wrapper}>
