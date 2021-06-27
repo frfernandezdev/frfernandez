@@ -35,6 +35,10 @@
 	padding: 0 7.5px;
 }
 
+#github {
+	display: none !important;
+}
+
 @media only screen and (min-width: 576px) {
 	#header .container {
 		width: 540px;
@@ -59,4 +63,7 @@
 	#header .container {
 		width: 1320px;
 	}
+}
+@media only screen and (max-width: 992px) {
+	#github { display: inline-block !important; }
 }

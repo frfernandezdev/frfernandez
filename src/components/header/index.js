@@ -9,6 +9,7 @@ import Instagram from 'icons/instagram.inline.svg';
 import Linkedin from 'icons/linkedin.inline.svg';
 import Codepen from 'icons/codepen.inline.svg';
 import Dribbble from 'icons/dribbble.inline.svg';
+import Github from 'icons/github.inline.svg';
 
 
 export default function Header() {
@@ -62,6 +63,16 @@ export default function Header() {
 							className={styles.icon}
 						>
 							<Instagram />
+						</a>
+					</Tooltip>
+					<Tooltip title="My Github" rootElement={ref.current}>
+						<a 
+								aria-label="My Github"
+								href="https://github.com/frfernandezdev" 
+								className={styles.icon}
+								id={styles.github}
+						>
+							<Github />
 						</a>
 					</Tooltip>
 				</div>
