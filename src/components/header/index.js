@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { ScrollMainContext } from '../scrollmain';
 import Tooltip from '../tooltip';
 import * as styles from './index.module.css';
 
@@ -11,13 +12,14 @@ import Dribbble from 'icons/dribbble.inline.svg';
 
 
 export default function Header() {
+	const { ref } = useContext(ScrollMainContext);
 	return (
 		<header id={styles.header}>
 			<div className={styles.container}>
 				<div className={styles.navBrand}>FrFernandez</div>
 				<div className={styles.whitespace}></div>
 				<div className={styles.navIcons}>
-					<Tooltip title="My Dribble">
+					<Tooltip title="My Dribble" rootElement={ref.current}>
 						<a 
 							aria-label="My Dribbble"
 							href="https://dribbble.com/FrFernandez"
@@ -26,7 +28,7 @@ export default function Header() {
 							<Dribbble />
 						</a>
 					</Tooltip>
-					<Tooltip title="My Codepen">
+					<Tooltip title="My Codepen" rootElement={ref.current}>
 						<a 
 							aria-label="My Codepen"
 							href="https://codepen.io/frfernandezdev"
@@ -35,7 +37,7 @@ export default function Header() {
 							<Codepen />
 						</a>
 					</Tooltip>
-					<Tooltip title="My Linkedin">
+					<Tooltip title="My Linkedin" rootElement={ref.current}>
 						<a 
 							aria-label="My Linkedin"
 							href="https://www.linkedin.com/in/frfernandezdev" 
@@ -44,7 +46,7 @@ export default function Header() {
 							<Linkedin />
 						</a>
 					</Tooltip>
-					<Tooltip title="My Twitter">
+					<Tooltip title="My Twitter" rootElement={ref.current}>
 						<a 
 							aria-label="My Twitter"
 							href="https://twitter.com/frfernandezdev" 
@@ -53,7 +55,7 @@ export default function Header() {
 							<Twitter />
 						</a>
 					</Tooltip>
-					<Tooltip title="My IG">
+					<Tooltip title="My IG" rootElement={ref.current}>
 						<a 
 							aria-label="My IG"
 							href="https://www.instagram.com/frfernandezdev" 
