@@ -82,7 +82,29 @@
 	transform: translateX(-50%);
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 576px) {
+	.avatar,
+	.avatar::before {
+		width: 200px;
+		height: 200px;
+	}
+	.avatar-img {
+		width: 170px;
+		height: 170px;
+	}
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+	.avatar,
+	.avatar::before {
+		width: 266px;
+		height: 266px;
+	}
+	.avatar-img {
+		width: 236px;
+		height: 236px;
+	}
+}
+@media only screen and (max-width: 768px) {
 	.github-corner { display: none; }
 }
 @media only screen and (min-width: 576px) {
