@@ -255,6 +255,7 @@
 	}
 	#about .testimonials .testimonials__cards .testimonials__wrapper {
 		width: 100%;
+		grid-template-columns: repeat(2, auto);
 	}
 	#about .testimonials .testimonials__card {
 		padding: 4rem 2rem 0rem 3rem;
