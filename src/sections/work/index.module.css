@@ -6,7 +6,7 @@
 
 #work .nav-title {
 	display: grid;
-	grid-template-columns: 1fr 1320px 1fr;
+	grid-template-columns: 1fr;
 	position: absolute;
 	top: var(--title-section-about, 0);
 	left: 0;
@@ -17,12 +17,8 @@
 #work .nav-title .title {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-}
-
-#work .nav-title .container {
-	padding: 0;
-	margin: 0;
+	justify-content: flex-start;
+	padding: 0 .75rem;
 }
 
 #work > .container {
@@ -39,41 +35,67 @@
 	#work .container {
 		width: 540px;
 	}
+	#work .nav-title {
+		grid-template-columns: 1fr 400px 1fr;
+	}
 }
 @media only screen and (min-width: 768px) {
 	#work .container {
 		width: 720px;
+	}
+	#work .nav-title {
+		grid-template-columns: 1fr 600px 1fr;
+	}
+	#work .nav-title .title {
+		justify-content: flex-end;
 	}
 }
 @media only screen and (min-width: 992px) {
 	#work .container {
 		width: 920px;
 	}
+	#work .nav-title {
+		grid-template-columns: 1fr 800px 1fr;
+	}
 }
 @media only screen and (min-width: 1200px) {
 	#work .container {
 		width: 1140px;
+	}
+	#work .nav-title {
+		grid-template-columns: 1fr 980px 1fr;
 	}
 }
 @media only screen and (min-width: 1400px) {
 	#work .container {
 		width: 1320px;
 	}
+	#work .nav-title {
+		grid-template-columns: 1fr 1120px 1fr;
+	}
 }
 
 #work .projects {
-	display: grid;
-	grid-template-columns: repeat(3, 316px);
-	grid-template-rows: repeat(3, 190px);
-	grid-gap: 100px 80px;
+	position: relative;
 	width: 100%;
 	height: 100%;
+	box-sizing: border-box;
+}
+
+#work .projects .projects__wrapper {
+	display: grid;
+	grid-template-columns: repeat(1, 92vw);
+	grid-template-rows: repeat(3, 200px);
+	grid-gap: .25rem;
 	align-content: center;
 	justify-content: center;
+	justify-items: center;
 }
 
 #work .projects .project {
 	position: relative;
+	width: 286px;
+	height: 200px;
 }
 
 #work .projects .project .browser {
@@ -97,7 +119,7 @@
 	background-image: url(icons/frame-browser.svg);
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
+	background-size: contain;
 }
 
 #work .projects .project .project-img {
@@ -126,10 +148,37 @@
 	background-image: url(icons/frame-mobile.svg);
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: contain;
 }
 
 #work .projects .project .over {
 	position: absolute;
 	right: 0;
 	bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+	#work .projects .project {
+		height: 170px;
+	}
+}
+@media only screen and (min-width: 576px) {
+}
+@media only screen and (min-width: 768px) {
+	#work .projects .projects__wrapper {
+		display: grid;
+		grid-template-columns: repeat(3, 316px);
+		grid-template-rows: repeat(3, 190px);
+		grid-gap: 80px 80px;
+		width: 100%;
+	}
+	#work .projects .project {
+		width: 350px;
+	}
+}
+@media only screen and (min-width: 992px) {
+}
+@media only screen and (min-width: 1200px) {
+}
+@media only screen and (min-width: 1400px) {
 }

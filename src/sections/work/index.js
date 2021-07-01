@@ -1,4 +1,5 @@
 import React from 'react';
+import Slide from 'components/slide';
 import { StaticImage } from 'gatsby-plugin-image';
 import * as styles from './index.module.css';
 
@@ -10,10 +11,12 @@ export default function Work() {
 				<div className={styles.title}>
 					<h3>Work</h3>
 				</div>
-				<div className={styles.container}></div>
 			</nav>
 			<div className={styles.container}>
-				<div className={styles.projects}>
+				<Slide
+					className={styles.projects}
+					swipeClass={styles.projects__wrapper}
+				>
 					<div className={styles.project}>
 						<div className={styles.browser}>
 							<StaticImage
@@ -34,13 +37,7 @@ export default function Work() {
 							/>
 						</div>
 					</div>
-					<div className={styles.project}></div>
-					<div className={styles.project}></div>
-					<div className={styles.project}></div>
-					<div className={styles.project}></div>
-					<div className={styles.project}></div>
-					<div className={styles.project}></div>
-				</div>				
+				</Slide>
 			</div>
 		</section>
 	); 
