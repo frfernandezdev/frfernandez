@@ -2,6 +2,7 @@ import React, { memo, useContext } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import {ScrollMainContext} from '../../components/scrollmain';
 import Tooltip from 'components/tooltip';
+import Slide from 'components/slide';
 import * as styles from './index.module.css';
 
 
@@ -18,9 +19,8 @@ import Python from 'icons/python.inline.svg';
 import Neovim from 'icons/neovim.inline.svg';
 import Docker from 'icons/docker.inline.svg';
 import Gitlab from 'icons/gitlab.inline.svg';
-import Github from 'icons/github.inline.svg';
+import Github from 'icons/github-big.inline.svg';
 import Figma from 'icons/figma.inline.svg';
-import ArrowBottom from 'icons/arrow-bottom.inline.svg';
 
 
 
@@ -32,7 +32,6 @@ const About = memo(function({ setLayer }) {
 				<div className={styles.title}>
 					<h3>About Me</h3>				
 				</div>
-				<div className={styles.container}></div>
 			</nav>
 			<div className={styles.container}>
 				<div className={styles.whatIDo}>
@@ -60,7 +59,10 @@ const About = memo(function({ setLayer }) {
 				</div>
 				<div className={styles.tools}>
 					<h4>Tools</h4>		
-					<div className={styles.tools__cards}>
+					<Slide 
+						className={styles.tools__cards} 
+						swipeClass={styles.tools__wrapper} 
+					>
 						<div className={styles.tools__cardIcon}>
 							<Tooltip title="HTML" rootElement={ref.current}>
 								<a href="html" aria-label="HTML"><Html /></a>
@@ -94,7 +96,7 @@ const About = memo(function({ setLayer }) {
 						<div className={styles.tools__cardIcon}>
 							<Tooltip title="ReactJS" rootElement={ref.current}>
 								<a href="reactjs" aria-label="ReactJS"><XReact /></a>
-						</Tooltip>
+							</Tooltip>
 						</div>
 						<div className={styles.tools__cardIcon}>
 							<Tooltip title="Python" rootElement={ref.current}>
@@ -126,57 +128,53 @@ const About = memo(function({ setLayer }) {
 								<a href="figma" aria-label="Figma"><Figma /></a>
 							</Tooltip>
 						</div>
-					</div>
+					</Slide>
 				</div>
 				<div className={styles.testimonials}>
 					<h4>Testimonials</h4>		
 					<div className={styles.testimonials__cards}>
-						<div className={styles.testimonials__card}>
-							<div className={styles.testimonials__cardHeader}>
-								<StaticImage
-									src="../../images/20210529_235148.jpg"
-									alt="Avatar"
-									placeholder="blurred"
-									objectPosition="25% 50%"
-									className={styles.testimonials__cardAvatar}
-								/>
-								<div className={styles.testimonials__cardTitle}>
-									<h5>John Doe</h5>
+						<Slide 
+							className={styles.testimonials__cards}
+							swipeClass={styles.testimonials__wrapper}
+						>
+							<div className={styles.testimonials__card}>
+								<div className={styles.testimonials__cardHeader}>
+									<StaticImage
+										src="../../images/20210529_235148.jpg"
+										alt="Avatar"
+										placeholder="blurred"
+										objectPosition="25% 50%"
+										className={styles.testimonials__cardAvatar}
+									/>
+									<div className={styles.testimonials__cardTitle}>
+										<h5>John Doe</h5>
+									</div>
+									<div className={styles.testimonials__cardOccupation}>Company</div>
 								</div>
-								<div className={styles.testimonials__cardOccupation}>Company</div>
-							</div>
-							<div className={styles.testimonials__cardContent}>
-								<p>Websites designed for people and used by people. This is my main goal when designing a website. Minimalist designs and user-friendly interfaces.</p>			
-							</div>
-						</div>
-						<div className={styles.testimonials__card}>
-							<div className={styles.testimonials__cardHeader}>
-								<StaticImage
-									src="../../images/20210529_235148.jpg"
-									alt="Avatar"
-									placeholder="blurred"
-									objectPosition="25% 50%"
-									className={styles.testimonials__cardAvatar}
-								/>
-								<div className={styles.testimonials__cardTitle}>
-									<h5>John Doe</h5>
+								<div className={styles.testimonials__cardContent}>
+									<p>Websites designed for people and used by people. This is my main goal when designing a website. Minimalist designs and user-friendly interfaces.</p>			
 								</div>
-								<div className={styles.testimonials__cardOccupation}>Company</div>
 							</div>
-							<div className={styles.testimonials__cardContent}>
-								<p>Websites designed for people and used by people. This is my main goal when designing a website. Minimalist designs and user-friendly interfaces.</p>			
+							<div className={styles.testimonials__card}>
+								<div className={styles.testimonials__cardHeader}>
+									<StaticImage
+										src="../../images/20210529_235148.jpg"
+										alt="Avatar"
+										placeholder="blurred"
+										objectPosition="25% 50%"
+										className={styles.testimonials__cardAvatar}
+									/>
+									<div className={styles.testimonials__cardTitle}>
+										<h5>John Doe</h5>
+									</div>
+									<div className={styles.testimonials__cardOccupation}>Company</div>
+								</div>
+								<div className={styles.testimonials__cardContent}>
+									<p>Websites designed for people and used by people. This is my main goal when designing a website. Minimalist designs and user-friendly interfaces.</p>			
+								</div>
 							</div>
-						</div>
+						</Slide>
 					</div>
-				</div>
-				<div className={styles.arrowBottom}>
-					<button 
-						type="button" 
-						className="icon-btn"
-						onClick={() => setLayer(2)}
-					>
-						<ArrowBottom />
-					</button>
 				</div>
 			</div>
 		</section>
