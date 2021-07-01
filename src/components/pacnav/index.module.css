@@ -1,7 +1,7 @@
 #pacnav {
 	position: fixed;
 	top: 50%;
-	left: 1rem;
+	right: 1rem;
 	transform: translateY(-50%);
 	z-index: 9999;
 }
@@ -77,6 +77,6 @@
 
 @media only screen and (max-width: 576px) {
 	#pacnav {
-		left: 0;
+		right: 0;
 	}
 }

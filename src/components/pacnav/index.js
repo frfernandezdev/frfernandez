@@ -37,9 +37,7 @@ const PacNav = memo(function({ value, steps, onChange }) {
 	}
 
 	function eatOn() {
-		const { current } = pacman;
-
-		current.classList.toggle(styles.pacman__eat);
+		pacman.current.classList.toggle(styles.pacman__eat);
 	}
 
 	function turnOn() {
@@ -94,7 +92,7 @@ const PacNav = memo(function({ value, steps, onChange }) {
 				ref={ref}
 				className={state ? styles.active : null}
 			>
-				<Tooltip title={tooltip} placement="right">
+				<Tooltip title={tooltip} placement="left">
 					<button onClick={handleClick(i)} aria-label={`Navigate ${tooltip}`}></button>
 				</Tooltip>
 			</li>
