@@ -43,29 +43,45 @@ a {
 }
 
 h1 {
-	font-size: 32px;
+	font-size: 2.3em;
 }
 
 h2 {
-	font-size: 26px
+	font-size: 1.86em;
 }
 
 h3 {
-	font-size: 20px;
+	font-size: 1.43em;
 }
 
 h4 {
-	font-size: 18px;
+	font-size: 1.29em;
 }
 
 h5 {
-	font-size: 16px;
+	font-size: 1.15em;
 }
 
 p {
 	color: #444444;
 	line-height: 1.5;
 	letter-spacing: 0;
+}
+
+button {
+	outline: none;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+button:hover,
+button:focus,
+button:active {
+	outline: none;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
 }
 
 button.my-btn {
@@ -75,7 +91,7 @@ button.my-btn {
 	border: 1px solid #EEEEEE;
 	box-shadow: 0 2px 4px 0 rgba(105, 130, 149, 25);
 	transition: box-shadow .5s ease;
-	}
+}
 
 button.icon-btn {
 	width: 40px;
@@ -83,16 +99,6 @@ button.icon-btn {
 	padding: 15px;
 	border-radius: 100%;
 	box-sizing: content-box;
-}
-
-button,
-button:hover,
-button:focus,
-button:active {
-	outline: none;
-	border: none;
-	cursor: pointer;
-	background-color: transparent;
 }
 
 button.my-btn:hover, 
@@ -108,3 +114,24 @@ button.my-btn.light {
 	border: 1px solid #67DEE5;
 }
 
+@media only screen and (max-width: 576px) {
+	body {
+		font-size: 10px;
+	}
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+	body {
+		font-size: 12px;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 992px) {
+}
+@media only screen and (min-width: 1200px) {
+}
+@media only screen and (min-width: 1400px) {
+}
