@@ -6,6 +6,10 @@ export function makeArr(i) {
 		.map(() => ({state: false, ref: createRef(null)}));
 }
 
+export function range(start, end) {
+	return Array(end - start +1).fill().map((_, idx) => start + idx);
+}
+
 export function getBoundingClientRect(el, dir=null) {
 	return dir 
 				? el.current.getBoundingClientRect()[dir]
