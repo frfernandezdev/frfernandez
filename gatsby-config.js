@@ -65,6 +65,6 @@ module.exports = {
 			options: {
 				createLinkInHead: true
 			}
-		}
-	]
+		} 
+	]		
 }
