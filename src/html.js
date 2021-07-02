@@ -13,7 +13,7 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 				<meta httpEquiv="ScreenOrientation" content="autoRotate:disabled" />
-				
+				<link rel="canonical" href="https://frfernandez.com"/>				
 				<title>FrFernandez - Web Developer</title>
 				<meta name="title" content="FrFernandez - Web Developer" />
 				<meta name="description" content="My personal portfolio" />
